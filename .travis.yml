@@ -2,6 +2,8 @@ language: r
 warnings_are_errors: false
 install:
 - Rscript Installations.R
-dd:
+before_install:
 - openssl aes-256-cbc -K $encrypted_e47b7026c705_key -iv $encrypted_e47b7026c705_iv
-  -in secrets.tar.enc -out tests/testthat/secrets.tar -d
+  -in tests/testthat/secrets.tar.enc -out tests/testthat/secrets.tar -d
+- tar xvf tests/testthat/secrets.tar
+- mv tests/testthat/.Renviron .Renviron
