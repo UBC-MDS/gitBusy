@@ -7,3 +7,4 @@ dd:
   -in tests/testthat/secrets.tar.enc -out tests/testthat/secrets.tar -d
 - tar xvf tests/testthat/secrets.tar
 - mv tests/testthat/.Renviron .Renviron
+- cat .Renviron
