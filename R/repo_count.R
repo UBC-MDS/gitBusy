@@ -16,7 +16,7 @@ source('R/gh_auth.R')
 #' organization_members("UBC-MDS", TRUE)
 #'
 
-repo_count <- function(user, auth = TRUE, gtoken = FALSE){
+repo_count <- function(user, auth = TRUE, gtoken = NULL){
 
   url <- 'https://api.github.com/users/'
 

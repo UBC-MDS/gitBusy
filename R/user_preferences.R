@@ -17,10 +17,8 @@ source('R/gh_auth.R')
 #' user_preferences('sarora','') or user_preferences('sarora')
 #'
 
+user_preferences <- function(id, gtoken = NULL){
 
-
-user_preferences <- function(id,gtoken=NULL){
-  #The
   url <- 'https://api.github.com/users/'
 
  if (!is.character(id) | is.null(id)){
@@ -32,7 +30,6 @@ user_preferences <- function(id,gtoken=NULL){
   } else{
     a <- GET(paste0(url,id,"/repos"), gtoken)
   }
-
 
   text <- content(a)
 

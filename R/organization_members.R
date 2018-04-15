@@ -20,7 +20,7 @@ source('R/gh_auth.R')
 #'
 
 #' @export
-organization_members <- function(organization, auth = FALSE ,gtoken = NULL){
+organization_members <- function(organization, gtoken = NULL){
   #Reads in the Organization name on GitHub
   #Returns a list of all the public users with their most commonly used languages in a dataframe and as a ggplot item.
 
@@ -30,29 +30,31 @@ organization_members <- function(organization, auth = FALSE ,gtoken = NULL){
   if (!is.character(organization) | is.null(organization)){
     stop("Organization input needs to be a string")
   }
+
+
   if(grepl("\\s", organization)){
     warning("Found white space in organization name. Removed spaces to check.")
     organization <- gsub(" ", "", organization,fixed = TRUE)
   }
+
+
   if(is.null(gtoken) & auth)
   {
     stop("Cannot extract data without authenticating.")
   } else if(!auth){
-    a <- GET(paste(url,organization,sep=""))
+    data <- GET(paste0(url, organization, "/members"))
   }
   else
   {
-    a <- GET(paste(url,organization,sep=""),gtoken)
+    data <- GET(paste0(url, organization, "/members"), gtoken)
   }
 
-  data <- GET(paste0(url,
-                    organization,
-                    "/members"), gtoken)
+
   text <- content(data)
 
   if(is.null(text$message)){
     user_ids <- map_chr(text, function(y) return(y$login))
-    complete_users <- map(user_ids, user_preferences,gtoken)
+    complete_users <- map(user_ids, user_preferences, gtoken)
     names(complete_users) <- user_ids
     return(complete_users)
   } else {
