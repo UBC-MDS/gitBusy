@@ -28,7 +28,7 @@ To obtain the list of all repositories, with their respective links and language
 ```{r}
 organization_name = "UBC-MDS"
 
-org_repos(organization_name,  auth = T, gtoken = F)
+org_repos(organization_name,  auth = F)
 ```
 If you are interested in the public users and their most commonly used language, you can run the follow code to return a dataframe:
 
@@ -39,16 +39,15 @@ organization_members(organization_name, auth = F, gtoken = NULL)
 Our package also allows you to return the number of public repositories for a given ID, with the following function:
 
 ```{r}
-user = "the_NASH"
-
-repo_count(user, auth = T, gtoken = F)
+user_name <- "sarora"
+repo_count(user_name, auth = F)
 ```
 
 Finally, you may generate a dataframe of a particular user's language preferences in Github.
 
 ```{r}
-id = "the_NASH"
+id <-  "Ivan-Despot"
 
-user_preferences(id, gtoken)
+user_preferences(id)
 ```
 
