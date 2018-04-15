@@ -8,8 +8,6 @@ token <- gh_auth(Sys.getenv("KEY"), Sys.getenv("SECRET"))
 
 #check error message
 test_that("check if the error message is correct",{
-  #saveRDS(token, file = "github_token.rds")
-  #gtoken <- readRDS(file = "github_token.rds")
   expect_error(repo_count("avinashkzz", TRUE, token), 'User avinashkzz Not Found on GitHub',fixed=TRUE)
 })
 

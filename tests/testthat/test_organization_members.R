@@ -1,4 +1,4 @@
-context('gitBusy.R')
+context('organization_members.R')
 
 library(gitBusy)
 library(testthat)
@@ -16,13 +16,13 @@ test_that("check if input is in correct format",{
   organization <- "UBC -MDS"
   expect_warning(organization_members(organization,TRUE,token),
                  "Found white space in organization name. Removed spaces to check."
-  )
+                 )
   organization <- "hakkunaaaaaaa matttaattaa"
   expect_error(organization_members(organization,TRUE,token),
                paste('Organization',
                      paste('"', str_replace(organization, fixed(" "), ""), '"', sep = ""),
                      'Not Found on GitHub')
-  )
+               )
 
 })
 
