@@ -20,7 +20,6 @@ source('R/gh_auth.R')
 
 
 user_preferences <- function(id,gtoken=NULL){
-  #The
   url <- 'https://api.github.com/users/'
 
  if (!is.character(id) | is.null(id)){
